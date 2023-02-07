@@ -25,7 +25,13 @@ export default function MyDatePicker(props) {
             value={value}
             onChange={onChange}
             // onClose={onClose}
-            renderInput={(params) => <TextField {...params} />}
+            // renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                helperText={params?.inputProps?.placeholder}
+              />
+            )}
           />
         </Stack>
       </LocalizationProvider>

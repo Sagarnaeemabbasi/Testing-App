@@ -11,7 +11,9 @@ function App() {
   const months = newDate.getUTCMonth();
   const year = newDate.getUTCFullYear();
   const day = newDate.getUTCDate();
-  const todaysDate = `${day}/${months + 1}/${year}`;
+  // const todaysDate = `${day}/${months}/${year}`;
+  const todaysDate = `${months + 1}/${day}/${year}`;
+
   const [Schedule, setSchedule] = useState(0);
   const generateSchedule = () => {
     setSchedule(Schedule + 1);
@@ -23,6 +25,19 @@ function App() {
     setKeyNames(keys);
     setValueNames(values);
   };
+  let numbers = [0, 0, 0, 5, 0, 3];
+  const getNumber = (num) => {
+    return numbers[num];
+  };
+  /*
+num function  takes one parameter   (number)
+   number === 5
+   return 3
+   else 
+   return 5
+    
+but without if else condition
+  */
 
   const [loanData, setloanData] = useState({
     Account: "empty",
@@ -79,8 +94,10 @@ function App() {
             value={loanData.StartDate}
             // onChange={(e) => setDate(e)}
             onChange={(e) => {
-              getLoanData("StartDate", `${e.$D}/${e.$M + 1}/${e.$y}`);
+              // getLoanData("StartDate", `${e.$D}/${e.$M + 1}/${e.$y}`);
+              getLoanData("StartDate", `${e.$M + 1}/${e.$D}/${e.$y}`);
             }}
+            // label="MM/DD/YY"
           />
           <MyTextField
             text="Total Number of Payments"
@@ -108,8 +125,9 @@ function App() {
             value={loanData.firstPaymentDate}
             // onChange={(e) => setDate(e)}
             onChange={(e) => {
-              getLoanData("firstPaymentDate", `${e.$D}/${e.$M + 1}/${e.$y}`);
+              getLoanData("firstPaymentDate", `${e.$M + 1}/${e.$D}/${e.$y}`);
             }}
+            // label="MM/DD/YY"
           />
           <MySelect
             text="Charge interest to"
